@@ -48,7 +48,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-white text-primary hover:bg-white/90 text-lg px-8 shadow-purple group"
+                className="bg-white/95 hover:bg-white text-[#6B2D8F] font-semibold text-lg px-8 shadow-purple group"
               >
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
