@@ -50,13 +50,19 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative text-sm font-medium text-foreground/70 hover:text-primary transition-colors group"
+                className={`relative text-sm font-medium transition-colors group ${
+                  scrolled 
+                    ? 'text-foreground/70 hover:text-primary' 
+                    : 'text-white/90 hover:text-white'
+                }`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300" />
+                <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
+                  scrolled ? 'bg-gradient-primary' : 'bg-white'
+                }`} />
               </a>
             ))}
-            <Button className="bg-gradient-primary hover:opacity-90 transition-all hover:shadow-purple group">
+            <Button className="bg-white/95 hover:bg-white text-[#6B2D8F] font-semibold transition-all hover:shadow-purple group">
               Get Started
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -74,19 +80,19 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-6 animate-fade-in border-t border-border/50 mt-2">
+          <div className="md:hidden py-6 animate-fade-in border-t border-border/50 mt-2 bg-background/95 backdrop-blur-xl rounded-b-lg">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-accent"
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-accent"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <Button className="bg-gradient-primary hover:opacity-90 transition-opacity w-full group">
+              <Button className="bg-white/95 hover:bg-white text-[#6B2D8F] font-semibold transition-opacity w-full group">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
