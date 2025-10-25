@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import pibdLogo from "@/assets/pibd-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -16,12 +25,21 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-lg border-b border-border z-50">
+    <nav 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-background/70 backdrop-blur-xl border-b border-border/50 shadow-sm' 
+          : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={pibdLogo} alt="PiBD Logo" className="h-10 w-10" />
-            <span className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+        <div className="flex justify-between items-center h-20">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-primary rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+              <img src={pibdLogo} alt="PiBD Logo" className="h-12 w-12 relative z-10" />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
               PiBD
             </span>
           </Link>
@@ -32,19 +50,21 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                className="relative text-sm font-medium text-foreground/70 hover:text-primary transition-colors group"
               >
                 {link.name}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-primary group-hover:w-full transition-all duration-300" />
               </a>
             ))}
-            <Button className="bg-gradient-primary hover:opacity-90 transition-opacity">
-              Request a Quote
+            <Button className="bg-gradient-primary hover:opacity-90 transition-all hover:shadow-purple group">
+              Get Started
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -54,20 +74,21 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
+          <div className="md:hidden py-6 animate-fade-in border-t border-border/50 mt-2">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors py-2"
+                  className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-accent"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
-              <Button className="bg-gradient-primary hover:opacity-90 transition-opacity w-full">
-                Request a Quote
+              <Button className="bg-gradient-primary hover:opacity-90 transition-opacity w-full group">
+                Get Started
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
           </div>
