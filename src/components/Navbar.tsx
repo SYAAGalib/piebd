@@ -39,7 +39,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-gradient-primary rounded-xl blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
               <img src={pibdLogo} alt="PiBD Logo" className="h-12 w-12 relative z-10" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
               PiBD
             </span>
           </Link>
