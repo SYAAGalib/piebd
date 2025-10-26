@@ -56,7 +56,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white text-white hover:bg-white hover:text-[#6B2D8F] backdrop-blur-sm text-lg px-8 font-semibold transition-all"
+                className="border-2 border-white/50 bg-white/10 text-primary backdrop-blur-sm text-lg px-8 font-semibold transition-all hover:bg-white hover:text-[#6B2D8F]"
               >
                 View Portfolio
               </Button>
@@ -96,7 +96,7 @@ const Hero = () => {
               </Card>
 
               {/* Secondary Card */}
-              <Card className="absolute top-52 right-16 w-72 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 animate-float z-20" style={{ animationDelay: '2s' }}>
+              <Card className="absolute top-52 right-16 w-72 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 z-20">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
                     <Shield className="h-6 w-6 text-white" />
@@ -109,7 +109,7 @@ const Hero = () => {
               </Card>
 
               {/* Tertiary Card */}
-              <Card className="absolute bottom-8 right-24 w-64 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 animate-float z-10" style={{ animationDelay: '4s' }}>
+              <Card className="absolute bottom-8 right-24 w-64 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 z-10">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-white" />
@@ -122,8 +122,8 @@ const Hero = () => {
               </Card>
 
               {/* Decorative Elements */}
-              <div className="absolute top-20 left-0 w-32 h-32 bg-white/5 rounded-2xl rotate-12 animate-float" style={{ animationDelay: '1s' }} />
-              <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full animate-float" style={{ animationDelay: '3s' }} />
+              <div className="absolute top-20 left-0 w-32 h-32 bg-white/5 rounded-2xl rotate-12" />
+              <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full" />
             </div>
           </div>
         </div>
@@ -140,12 +140,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="hsl(var(--secondary))"/>
-        </svg>
-      </div>
     </section>
   );
 };

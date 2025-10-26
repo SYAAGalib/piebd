@@ -5,7 +5,34 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import certificateSample from "@/assets/certificate-sample.png";
+
+// Certificate database - Add your certificates here
+const certificates: Record<string, {
+  valid: true;
+  name: string;
+  role: string;
+  duration: string;
+  from: string;
+  to: string;
+  issuedDate: string;
+  photo?: string;
+  certificateId: string;
+}> = {
+  "CERT-2025-001": {
+    valid: true,
+    name: "Aiman Al Mahmud",
+    role: "Junior Software Engineer",
+    duration: "9 months",
+    from: "01 January, 2025",
+    to: "30 September, 2025",
+    issuedDate: "30 September, 2025",
+    photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aiman",
+    certificateId: "CERT-2025-001",
+  },
+  // Add more certificates here following the same structure
+};
 
 const Verify = () => {
   const [certificateId, setCertificateId] = useState("");
@@ -14,17 +41,11 @@ const Verify = () => {
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Mock verification - in production, this would call your backend
-    if (certificateId.toLowerCase().includes("sample") || certificateId === "123") {
-      setSearchResult({
-        valid: true,
-        name: "Aiman Al Mahmud",
-        role: "Junior Software Engineer",
-        duration: "9 months",
-        from: "01 January, 2025",
-        to: "30 September, 2025",
-        certificateId: certificateId,
-      });
+    // Search for certificate in database
+    const certificate = certificates[certificateId.toUpperCase()];
+    
+    if (certificate) {
+      setSearchResult(certificate);
     } else if (certificateId) {
       setSearchResult({
         valid: false,
@@ -88,15 +109,30 @@ const Verify = () => {
                 </CardHeader>
                 <CardContent>
                   {searchResult.valid ? (
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-6">
+                      {/* Photo and Basic Info */}
+                      <div className="flex items-start gap-6">
+                        {searchResult.photo && (
+                          <Avatar className="h-24 w-24">
+                            <AvatarImage src={searchResult.photo} alt={searchResult.name} />
+                            <AvatarFallback>{searchResult.name.split(' ').map((n: string) => n[0]).join('')}</AvatarFallback>
+                          </Avatar>
+                        )}
+                        <div className="flex-grow">
+                          <h3 className="text-2xl font-bold text-foreground mb-1">{searchResult.name}</h3>
+                          <p className="text-lg text-muted-foreground">{searchResult.role}</p>
+                        </div>
+                      </div>
+
+                      {/* Certificate Details */}
+                      <div className="grid grid-cols-2 gap-4 border-t pt-4">
                         <div>
-                          <p className="text-sm text-muted-foreground">Name</p>
-                          <p className="font-semibold">{searchResult.name}</p>
+                          <p className="text-sm text-muted-foreground">Certificate ID</p>
+                          <p className="font-semibold">{searchResult.certificateId}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground">Role</p>
-                          <p className="font-semibold">{searchResult.role}</p>
+                          <p className="text-sm text-muted-foreground">Issued Date</p>
+                          <p className="font-semibold">{searchResult.issuedDate}</p>
                         </div>
                         <div>
                           <p className="text-sm text-muted-foreground">Duration</p>
@@ -107,6 +143,8 @@ const Verify = () => {
                           <p className="font-semibold">{searchResult.from} - {searchResult.to}</p>
                         </div>
                       </div>
+
+                      {/* Issuer Information */}
                       <div className="border-t pt-4">
                         <p className="text-sm text-muted-foreground mb-2">Issued by:</p>
                         <p className="font-semibold">PiBD - Pi Brand Identity</p>
