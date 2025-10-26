@@ -81,9 +81,9 @@ const Hero = () => {
 
           {/* Right Content - Floating Cards */}
           <div className="relative hidden lg:block animate-slide-up">
-            <div className="relative h-[600px]">
+            <div className="relative h-[600px] w-full">
               {/* Main Card */}
-              <Card className="absolute top-0 right-0 w-80 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-300 hover:-translate-y-2">
+              <Card className="absolute top-0 right-0 w-80 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 z-30">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
                     <Zap className="h-6 w-6 text-white" />
@@ -96,7 +96,7 @@ const Hero = () => {
               </Card>
 
               {/* Secondary Card */}
-              <Card className="absolute top-40 right-20 w-72 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-300 hover:-translate-y-2 animate-float" style={{ animationDelay: '1s' }}>
+              <Card className="absolute top-52 right-16 w-72 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 animate-float z-20" style={{ animationDelay: '2s' }}>
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
                     <Shield className="h-6 w-6 text-white" />
@@ -109,7 +109,7 @@ const Hero = () => {
               </Card>
 
               {/* Tertiary Card */}
-              <Card className="absolute bottom-0 right-10 w-64 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-300 hover:-translate-y-2 animate-float" style={{ animationDelay: '0.5s' }}>
+              <Card className="absolute bottom-8 right-24 w-64 bg-white/10 backdrop-blur-xl border-white/20 shadow-2xl hover:shadow-purple transition-all duration-500 hover:-translate-y-2 animate-float z-10" style={{ animationDelay: '4s' }}>
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mb-4">
                     <Users className="h-6 w-6 text-white" />
@@ -122,8 +122,8 @@ const Hero = () => {
               </Card>
 
               {/* Decorative Elements */}
-              <div className="absolute top-20 left-0 w-32 h-32 bg-white/5 rounded-2xl rotate-12 animate-float" />
-              <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
+              <div className="absolute top-20 left-0 w-32 h-32 bg-white/5 rounded-2xl rotate-12 animate-float" style={{ animationDelay: '1s' }} />
+              <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full animate-float" style={{ animationDelay: '3s' }} />
             </div>
           </div>
         </div>
