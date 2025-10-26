@@ -111,9 +111,18 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            {/* Map placeholder */}
-            <div className="w-full h-64 bg-muted rounded-xl flex items-center justify-center">
-              <p className="text-muted-foreground">Google Maps integration</p>
+            {/* Google Maps */}
+            <div className="w-full h-64 rounded-xl overflow-hidden border border-border shadow-card">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d220.88866373396283!2d89.56747506325786!3d22.806686079325786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1761460579095!5m2!1sen!2sbd" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="PiBD Location"
+              />
             </div>
           </div>
         </div>

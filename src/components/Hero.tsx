@@ -56,7 +56,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-white/50 bg-white/10 text-primary backdrop-blur-sm text-lg px-8 font-semibold transition-all hover:bg-white hover:text-[#6B2D8F]"
+                className="border-2 border-white/50 bg-white text-[#6B2D8F] backdrop-blur-sm text-lg px-8 font-semibold transition-all hover:bg-white/90"
               >
                 View Portfolio
               </Button>
@@ -140,6 +140,12 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Curved bottom edge */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg className="relative block w-full h-12 sm:h-16 lg:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z" className="fill-background" />
+        </svg>
+      </div>
     </section>
   );
 };

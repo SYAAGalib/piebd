@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import pibdLogo from "@/assets/pibd-logo.png";
@@ -7,6 +7,8 @@ import pibdLogo from "@/assets/pibd-logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,10 +26,12 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  const shouldShowScrolledStyle = !isHomePage || scrolled;
+
   return (
     <nav 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
+        shouldShowScrolledStyle 
           ? 'bg-background/70 backdrop-blur-xl border-b border-border/50 shadow-sm' 
           : 'bg-transparent'
       }`}
@@ -40,7 +44,7 @@ const Navbar = () => {
               <img src={pibdLogo} alt="PiBD Logo" className="h-12 w-12 relative z-10" />
             </div>
             <span className={`text-2xl font-bold bg-clip-text text-transparent transition-all ${
-              scrolled 
+              shouldShowScrolledStyle 
                 ? 'bg-gradient-primary' 
                 : 'bg-gradient-to-r from-white to-purple-200'
             }`}>
@@ -55,14 +59,14 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className={`relative text-sm font-medium transition-colors group ${
-                  scrolled 
+                  shouldShowScrolledStyle 
                     ? 'text-foreground/70 hover:text-primary' 
                     : 'text-white/90 hover:text-white'
                 }`}
               >
                 {link.name}
                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-                  scrolled ? 'bg-gradient-primary' : 'bg-white'
+                  shouldShowScrolledStyle ? 'bg-gradient-primary' : 'bg-white'
                 }`} />
               </a>
             ))}
