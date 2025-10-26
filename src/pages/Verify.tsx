@@ -29,7 +29,7 @@ const certificates: Record<string, {
     to: "30 September, 2025",
     issuedDate: "06 October, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aiman",
-    certificateId: "CERT-2025-001",
+    certificateId: "PI-SE-1787755330",
   },
   "CERT-2025-002": {
     valid: true,
