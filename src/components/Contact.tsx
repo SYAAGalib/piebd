@@ -104,7 +104,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Phone</h3>
                     <p className="text-muted-foreground">
-                      +880 1XXX-XXXXXX
+                      +880 1723 479161
                     </p>
                   </div>
                 </div>

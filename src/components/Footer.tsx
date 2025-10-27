@@ -52,6 +52,7 @@ const Footer = () => {
               <li>West Tutpara, Khulna</li>
               <li>Bangladesh</li>
               <li className="pt-2">info@piebd.org</li>
+              <li>+880 1723 479161</li>
             </ul>
           </div>
         </div>
