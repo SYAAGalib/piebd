@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Download, RefreshCw } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ const certificates: Record<string, {
   issuedDate: string;
   photo?: string;
   certificateId: string;
+  certificateImage: string;
 }> = {
   "CERT-2025-001": {
     valid: true,
@@ -30,6 +31,7 @@ const certificates: Record<string, {
     issuedDate: "06 October, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aiman",
     certificateId: "PI-SE-1787755330",
+    certificateImage: certificateSample,
   },
   "CERT-2025-002": {
     valid: true,
@@ -41,6 +43,7 @@ const certificates: Record<string, {
     issuedDate: "06 October, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Nusrat",
     certificateId: "CERT-2025-002",
+    certificateImage: certificateSample,
   },
   "CERT-2025-003": {
     valid: true,
@@ -52,6 +55,7 @@ const certificates: Record<string, {
     issuedDate: "06 October, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rafiul",
     certificateId: "CERT-2025-003",
+    certificateImage: certificateSample,
   },
   "CERT-2025-004": {
     valid: true,
@@ -63,6 +67,7 @@ const certificates: Record<string, {
     issuedDate: "06 October, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sadia",
     certificateId: "CERT-2025-004",
+    certificateImage: certificateSample,
   },
   "CERT-2025-005": {
     valid: true,
@@ -74,6 +79,7 @@ const certificates: Record<string, {
     issuedDate: "31 January, 2026",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kamal",
     certificateId: "CERT-2025-005",
+    certificateImage: certificateSample,
   },
   "CERT-2025-006": {
     valid: true,
@@ -85,6 +91,7 @@ const certificates: Record<string, {
     issuedDate: "31 August, 2025",
     photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tahmina",
     certificateId: "CERT-2025-006",
+    certificateImage: certificateSample,
   },
 };
 
@@ -104,6 +111,22 @@ const Verify = () => {
       setSearchResult({
         valid: false,
       });
+    }
+  };
+
+  const handleRefresh = () => {
+    setCertificateId("");
+    setSearchResult(null);
+  };
+
+  const handleDownload = () => {
+    if (searchResult?.valid && searchResult.certificateImage) {
+      const link = document.createElement('a');
+      link.href = searchResult.certificateImage;
+      link.download = `${searchResult.certificateId}-certificate.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   };
 
@@ -156,10 +179,19 @@ const Verify = () => {
             {/* Results */}
             {searchResult && (
               <Card className="shadow-card animate-fade-in">
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className={searchResult.valid ? "text-green-600" : "text-destructive"}>
                     {searchResult.valid ? "✓ Certificate Verified" : "✗ Certificate Not Found"}
                   </CardTitle>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={handleRefresh}
+                    className="gap-2"
+                  >
+                    <RefreshCw className="h-4 w-4" />
+                    Refresh
+                  </Button>
                 </CardHeader>
                 <CardContent>
                   {searchResult.valid ? (
@@ -204,6 +236,29 @@ const Verify = () => {
                         <p className="font-semibold">PiBD - Pi Brand Identity</p>
                         <p className="text-sm text-muted-foreground">01, Central Road, West Tutpara, Khulna, Bangladesh</p>
                       </div>
+
+                      {/* Certificate Image */}
+                      <div className="border-t pt-6">
+                        <h3 className="text-xl font-bold text-foreground mb-4">Certificate</h3>
+                        <Card className="shadow-card overflow-hidden">
+                          <CardContent className="p-0">
+                            <img 
+                              src={searchResult.certificateImage} 
+                              alt={`Certificate for ${searchResult.name}`}
+                              className="w-full h-auto"
+                            />
+                          </CardContent>
+                        </Card>
+                        <div className="mt-4 flex justify-center">
+                          <Button 
+                            onClick={handleDownload}
+                            className="bg-gradient-primary hover:opacity-90 gap-2"
+                          >
+                            <Download className="h-5 w-5" />
+                            Download Certificate
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <p className="text-muted-foreground">
@@ -213,22 +268,6 @@ const Verify = () => {
                 </CardContent>
               </Card>
             )}
-
-            {/* Sample Certificate */}
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-foreground mb-4 text-center">
-                Sample Certificate
-              </h2>
-              <Card className="shadow-card overflow-hidden">
-                <CardContent className="p-0">
-                  <img 
-                    src={certificateSample} 
-                    alt="Sample PiBD Certificate" 
-                    className="w-full h-auto"
-                  />
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </main>
