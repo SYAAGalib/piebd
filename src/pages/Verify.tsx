@@ -97,7 +97,7 @@ const certificates: Record<string, {
 
 const Verify = () => {
   const [certificateId, setCertificateId] = useState("");
-  const [searchResult, setSearchResult] = useState<any>(certificates["CERT-2025-001"]);
+  const [searchResult, setSearchResult] = useState<any>(null);
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
