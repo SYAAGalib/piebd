@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import certificateSample from "@/assets/certificate-sample.png";
+import defaultAvatar from "@/assets/default-avatar.png";
 
 // Certificate database - Add your certificates here
 const certificates: Record<string, {
@@ -198,12 +199,10 @@ const Verify = () => {
                     <div className="space-y-6">
                       {/* Photo and Basic Info */}
                       <div className="flex items-start gap-6">
-                        {searchResult.photo && (
-                          <Avatar className="h-24 w-24">
-                            <AvatarImage src={searchResult.photo} alt={searchResult.name} />
-                            <AvatarFallback>{searchResult.name.split(' ').map((n: string) => n[0]).join('')}</AvatarFallback>
-                          </Avatar>
-                        )}
+                        <Avatar className="h-24 w-24">
+                          <AvatarImage src={searchResult.photo || defaultAvatar} alt={searchResult.name} />
+                          <AvatarFallback>{searchResult.name.split(' ').map((n: string) => n[0]).join('')}</AvatarFallback>
+                        </Avatar>
                         <div className="flex-grow">
                           <h3 className="text-2xl font-bold text-foreground mb-1">{searchResult.name}</h3>
                           <p className="text-lg text-muted-foreground">{searchResult.role}</p>
