@@ -1,73 +1,53 @@
-# Welcome to your Lovable project
+# PiBD Marketing Site
 
-## Project info
+This repository contains the PiBD marketing website, a React + Vite single-page application showcasing our digital services.
 
-**URL**: https://lovable.dev/projects/852f02ab-7ae6-4199-9626-717ea6401ffd
+## Getting started
 
-## How can I edit this code?
+Before you begin, make sure you have a recent LTS version of Node.js installed (we recommend managing versions with [nvm](https://github.com/nvm-sh/nvm)).
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/852f02ab-7ae6-4199-9626-717ea6401ffd) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone <REPO_URL>
+cd piebd
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server runs at <http://localhost:5173> by default. Vite offers automatic hot module replacement, so changes appear instantly in the browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` – start the Vite development server
+- `npm run build` – create an optimized production build
+- `npm run preview` – preview the production build locally
+- `npm run lint` – run ESLint across the project
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Tech stack
 
-## What technologies are used for this project?
+- React 18 with TypeScript
+- Vite for fast development and bundling
+- Tailwind CSS and shadcn/ui component primitives
+- Radix UI for accessible, unstyled components
+- TanStack Query for data fetching helpers
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The site builds to the `dist/` directory via `npm run build`. You can deploy the static output to any modern hosting platform such as Vercel, Netlify, Cloudflare Pages, or your own static hosting.
 
-## How can I deploy this project?
+1. Run `npm run build`.
+2. Upload the contents of the generated `dist/` directory to your hosting provider.
 
-Simply open [Lovable](https://lovable.dev/projects/852f02ab-7ae6-4199-9626-717ea6401ffd) and click on Share -> Publish.
+### Environment variables
 
-## Can I connect a custom domain to my Lovable project?
+This project currently does not require runtime environment variables. If you introduce API integrations, define expected variables in `.env.example` and reference them through Vite's `import.meta.env` API.
 
-Yes, you can!
+## Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Create a feature branch.
+2. Make your changes and add tests where relevant.
+3. Run the lint and build commands to ensure everything passes.
+4. Open a pull request describing your changes.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+If you discover an issue or have ideas for improvement, open an issue or reach out to the PiBD team.
